@@ -15,6 +15,6 @@ jobs:
       - name: check fmt
         run: deno fmt --check
       - name: type check
-        run: deno check **/*.ts
+        run: deno check *.ts
       - name: linting
-        run: deno lint **/*.ts
+        run: deno lint *.ts
