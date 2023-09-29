@@ -1,0 +1,18 @@
+name: Check Deno type
+
+on:
+  push:
+
+jobs:
+  check:
+    name: Check type
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup deno
+        uses: denoland/setup-deno@v1
+      - name: check fmt
+        run: deno fmt --check
+      - name: type check
+        run: deno check **/*.ts
+      - name: linting
+        run: deno lint **/*.ts
