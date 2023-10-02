@@ -7,6 +7,6 @@
     "udd": "deno run --allow-read=. --allow-write=. --allow-net https://deno.land/x/udd@0.8.2/main.ts ./**/*.ts"
   },
   "imports": {
-    "fmt/": "https://deno.land/std@0.202.0/fmt/"
+    "fmt/": "https://deno.land/std@0.203.0/fmt/"
   }
 }
