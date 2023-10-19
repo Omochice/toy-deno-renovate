@@ -6,7 +6,7 @@ import {
   indent,
 } from "https://raw.githubusercontent.com/Omochice/podeno/v1.0.0/src/indent.ts";
 import { add } from "https://pax.deno.dev/Omochice-toybox/toy-release-please@v1.0.0";
-import { is } from "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.9.0";
+import { is } from "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.10.0
 import { assert } from "https://raw.githubusercontent.com/lambdalisue/deno-unknownutil/v3.9.0/mod.ts";
 
 console.log("hi", v4());
