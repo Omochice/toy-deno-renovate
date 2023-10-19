@@ -7,6 +7,8 @@
     "udd": "deno run --allow-read=. --allow-write=. --allow-net https://deno.land/x/udd@0.8.2/main.ts ./**/*.ts"
   },
   "imports": {
-    "fmt/": "https://deno.land/std@0.204.0/fmt/"
+    "fmt/": "https://deno.land/std@0.204.0/fmt/",
+    "unknownu/": "https://pax.deno.dev/lamndalisue/unknownutil/@v3.9.0",
+    "unknownut/": "https://raw.githubusercontent.com/lambdalisue/deno-unknownutil/v3.9.0"
   }
 }
