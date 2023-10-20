@@ -1,5 +1,6 @@
 {
   "imports": {
-    "lodash": "https://esm.sh/lodash@4.17.21"
+    "lodash": "https://esm.sh/lodash@4.17.21",
+    "unknownutil": "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.9.0/mod.ts"
   }
 }
