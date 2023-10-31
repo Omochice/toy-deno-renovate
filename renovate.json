@@ -2,5 +2,25 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>Omochice/renovate-config:deno"
-  ]
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "\\.[jt]sx?$"
+      ],
+      "matchStrings": [
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"]https://x.nest.land/(?<depName>.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?[/'\"]"
+      ],
+      "datasourceTemplate": "custom.nest-land"
+    }
+  ],
+  "customDatasources": {
+    "nest-land": {
+      "defaultRegistryUrlTemplate": "https://x.nest.land/api/package/{{packageName}}",
+      "format": "json",
+      "transformTemplates": [
+        "{ \"releases\": [{ \"version\": $split($string($.latestVersion), \"@\")[1], \"releaseTimestamp\": $.updatedAt, \"sourceUrl\": \"https://nest.land/package\" & $.normalizedName  }], \"homepage\": \"https://nest.land/package/\" & $.normalizedName, \"sourceUrl\": $.repository }"
+      ]
+    }
+  }
 }
