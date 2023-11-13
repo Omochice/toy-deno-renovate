@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>Omochice/renovate-config:deno"
+    "github>Omochice/renovate-config:deno#fix-failed-to-update-branch"
   ],
   "regexManagers": [
     {
@@ -9,7 +9,7 @@
         "\\.[jt]sx?$"
       ],
       "matchStrings": [
-        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"]https://x.nest.land/(?<depName>.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?[/'\"]"
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"]https://x.nest.land/(?<depName>.+?)@(?<currentValue>v?\\d+?\\.\\d+?\\.\\d+?).*?[/'\"]"
       ],
       "datasourceTemplate": "custom.nest-land"
     }
