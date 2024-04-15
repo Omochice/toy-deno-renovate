@@ -1,6 +1,7 @@
 {
   "imports": {
     "lodash": "https://esm.sh/lodash@4.17.21",
-    "unknownutil": "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.10.0/mod.ts"
+    "unknownutil": "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.10.0/mod.ts",
+    "@std/assert": "jsr:@std/assert@^0.219.1"
   }
 }
