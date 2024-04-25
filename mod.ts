@@ -9,7 +9,7 @@ import { add } from "https://pax.deno.dev/Omochice-toybox/toy-release-please@v1.
 import { is } from "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.10.0";
 import { assert } from "https://raw.githubusercontent.com/lambdalisue/deno-unknownutil/v3.10.0/mod.ts";
 import SysTray from "https://x.nest.land/systray@v0.2.0/mod.ts";
-import { parse } from "jsr:@std/csv@0.219.1";
+import { parse } from "jsr:@std/csv@0.224.0";
 
 console.log("hi", v4());
 
