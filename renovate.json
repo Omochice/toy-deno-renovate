@@ -32,9 +32,10 @@
   ],
   "packageRules": [
     {
+      "description": "Replace deno.land/std with jsr:@std",
       "matchDatasources": ["deno"],
       "matchPackagePatterns": ["^https://deno\\.land/std"],
-      "replacementNameTemplate": "foo"
+      "replacementNameTemplate": "{{{ replace 'https://deno\\.land/std' 'jsr:@std' depName }}}"
     }
   ]
 }
