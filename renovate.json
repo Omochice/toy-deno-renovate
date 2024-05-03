@@ -34,7 +34,7 @@
     {
       "matchDatasources": ["deno"],
       "matchPackagePatterns": ["^https://deno\\.land/std"],
-      "replacementNameTemplate": "{{{ replace 'https://deno\\.land/' 'jsr:@' depName }}}"
+      "replacementNameTemplate": "{{{ replace 'https://deno\\.land/' 'jsr:@' depName }}}{{ newValue }}"
     }
   ]
 }
