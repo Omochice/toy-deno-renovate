@@ -4,5 +4,12 @@
     "github>Omochice/renovate-config",
     "github>Omochice/renovate-config:deno",
     "github>Omochice/personal-renovate-config:mise"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["deno"],
+      "matchPackagePatterns": ["^https://deno\\.land/std$"],
+      "replacementNameTemplate": "jsr:@std"
+    }
   ]
 }
