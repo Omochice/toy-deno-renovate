@@ -25,7 +25,7 @@
     {
       "matchDatasources": ["deno"],
       "matchPackagePatterns": ["^https://deno\\.land/std$"],
-      "replacementNameTemplate": "jsr:@std"
+      "replacementNameTemplate": "jsr:@std/{{{denoPackage}}}"
     }
   ]
 }
