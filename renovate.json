@@ -6,7 +6,15 @@
       "customType": "regex",
       "fileMatch": ["^import_map.json$", "^deno.jsonc?$"],
       "matchStrings": [
-        "['\"].+?['\"]\\s*:\\s*['\"](?<depName>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)(?<denoPackage>.+?)[/'\"]",
+        "['\"].+?['\"]\\s*:\\s*['\"](?<depName>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)(?<denoPackage>.+?)[/'\"]"
+      ],
+      "depNameTemplate": "{{{depName}}}/{{{denoPackage}}}",
+      "datasourceTemplate": "deno"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^import_map.json$", "^deno.jsonc?$"],
+      "matchStrings": [
         "['\"].+?['\"]\\s*:\\s*['\"](?<depName>https://deno.land/x/.+?)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
       ],
       "datasourceTemplate": "deno"
