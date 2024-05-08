@@ -4,7 +4,10 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(?:^|/)import_map.json$", "(?:^|/)deno.jsonc?$"],
+      "fileMatch": [
+        "(?:^|/)import_map.json$",
+        "(?:^|/)deno.jsonc?$"
+      ],
       "matchStrings": [
         "['\"].+?['\"]\\s*:\\s*['\"](?<stdPath>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)/(?<denoPackage>.+?)[/'\"]"
       ],
@@ -14,7 +17,10 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["(?:^|/)import_map.json$", "(?:^|/)deno.jsonc?$"],
+      "fileMatch": [
+        "(?:^|/)import_map.json$",
+        "(?:^|/)deno.jsonc?$"
+      ],
       "matchStrings": [
         "['\"].+?['\"]\\s*:\\s*['\"](?<depName>https://deno.land/x/.+?)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
       ],
@@ -22,7 +28,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["\\.[jt]sx?$"],
+      "fileMatch": [
+        "\\.[jt]sx?$"
+      ],
       "matchStrings": [
         "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"](?<depName>https://deno.land/x/.+?)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)(?<denoPakage>.+?)[/'\"]",
         "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"](?<depName>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
@@ -33,9 +41,20 @@
   "packageRules": [
     {
       "description": "Replace deno.land/std with jsr:@std",
-      "matchDatasources": ["deno"],
-      "matchPackagePatterns": ["^https://deno\\.land/std"],
+      "matchDatasources": [
+        "deno"
+      ],
+      "matchPackagePatterns": [
+        "^https://deno\\.land/std"
+      ],
       "replacementNameTemplate": "{{{ replace 'https://deno\\.land/std' 'jsr:@std' depName }}}"
+    },
+    {
+      "description": "std",
+      "groupName": "https://deno.land/std",
+      "matchPackagePatterns": [
+        "^https://deno\\.land/std"
+      ]
     }
   ]
 }
