@@ -1,4 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.3.0/mod.ts";
 import { v4 } from "npm:uuid@9.0.1";
 import { execPodium } from "https://pax.deno.dev/Omochice/podeno@v1.0.0/src/lua.ts";
 import {
