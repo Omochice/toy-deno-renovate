@@ -1,5 +1,5 @@
-import * as Path from "https://deno.land/std@0.222.0/path/mod.ts";
-import * as Fs from "https://deno.land/std@0.222.0/fs/mod.ts";
+import * as Path from "https://deno.land/std@0.224.0/path/mod.ts";
+import * as Fs from "https://deno.land/std@0.224.0/fs/mod.ts";
 
 console.log("hi", v4());
 
