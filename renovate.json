@@ -55,7 +55,7 @@
       "matchDatasources": [
         "deno"
       ],
-      "matchDepNamePattern": [
+      "matchDepPatterns": [
         "^https://deno\\.land/std/path"
       ],
       "replacementNameTemplate": "{{{ replace 'https://deno\\.land/std' 'jsr:@std' depName }}}"
