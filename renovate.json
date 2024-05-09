@@ -61,7 +61,7 @@
       "replacementNameTemplate": "{{{ replace 'https://deno\\.land/std' 'jsr:@std' depName }}}"
     },
     {
-      "description": "std",
+      "description": "Grouping for https://deno.land/std",
       "groupName": "https://deno.land/std",
       "matchPackagePatterns": [
         "^https://deno\\.land/std"
