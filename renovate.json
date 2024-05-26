@@ -45,6 +45,7 @@
         "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"](?<stdPath>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)/(?<denoPackage>.+?)[/'\"]"
       ],
       "depNameTemplate": "jsr.io/@{{namespace}}/{{package}}",
+      "registryUrlTemplate": "https://npm.jsr.io",
       "packageNameTemplate": "{{stdPath}}",
       "datasourceTemplate": "deno"
     },
@@ -68,10 +69,10 @@
       ],
       "datasourceTemplate": "npm",
       "depNameTemplate": "jsr.io/@{{namespace}}/{{package}}",
+      "registryUrlTemplate": "https://npm.jsr.io",
       "packageNameTemplate": "@jsr/{{namespace}}__{{package}}"
     }
   ],
-  "npmrc": "@jsr:registry=https://npm.jsr.io",
   "packageRules": [
     {
       "description": "Replace deno.land/std with jsr:@std",
