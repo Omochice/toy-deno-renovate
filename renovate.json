@@ -58,8 +58,6 @@
       "datasourceTemplate": "npm",
       "depNameTemplate": "@{{namespace}}/{{package}}",
       "packageNameTemplate": "@jsr/{{namespace}}__{{package}}",
-      "registryUrlTemplate": "https://npm.jsr.io/@{{namespace}}/{{package}}"
-
     },
     {
       "customType": "regex",
@@ -71,7 +69,6 @@
       "datasourceTemplate": "npm",
       "depNameTemplate": "@{{namespace}}/{{package}}",
       "packageNameTemplate": "@jsr/{{namespace}}__{{package}}",
-      "registryUrlTemplate": "https://npm.jsr.io/@{{namespace}}/{{package}}"
     }
   ],
   "npmrc": "@jsr:registry=https://npm.jsr.io",
