@@ -57,7 +57,7 @@
       ],
       "datasourceTemplate": "npm",
       "depNameTemplate": "@{{namespace}}/{{package}}",
-      "packageNameTemplate": "@jsr/{{namespace}}__{{package}}",
+      "packageNameTemplate": "@jsr/{{namespace}}__{{package}}"
     },
     {
       "customType": "regex",
@@ -68,7 +68,7 @@
       ],
       "datasourceTemplate": "npm",
       "depNameTemplate": "@{{namespace}}/{{package}}",
-      "packageNameTemplate": "@jsr/{{namespace}}__{{package}}",
+      "packageNameTemplate": "@jsr/{{namespace}}__{{package}}"
     }
   ],
   "npmrc": "@jsr:registry=https://npm.jsr.io",
