@@ -11,5 +11,6 @@
     "fmt/": "https://deno.land/std@0.224.0/fmt/",
     "unknownu/": "https://pax.deno.dev/lambdalisue/deno-unknownutil@v3.10.0",
     "unknownut/": "https://raw.githubusercontent.com/lambdalisue/deno-unknownutil/v3.10.0"
-  }
+  },
+  "lock": false
 }
