@@ -14,79 +14,93 @@
   },
   "customManagers": [
     {
-      "customType": "regex",
-      "fileMatch": [
-        "(?:^|/)import_map.json$",
-        "(?:^|/)deno.jsonc?$"
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": [
+        "/(?:^|/)import_map.json$/",
+        "/(?:^|/)deno.jsonc?$/"
       ],
       "matchStrings": [
-        "['\"].+?['\"]\\s*:\\s*['\"](?<stdPath>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)/(?<denoPackage>.+?)[/'\"]"
-      ],
-      "depNameTemplate": "{{{stdPath}}}/{{{denoPackage}}}",
-      "packageNameTemplate": "{{stdPath}}",
-      "datasourceTemplate": "deno"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
-        "(?:^|/)import_map.json$",
-        "(?:^|/)deno.jsonc?$"
-      ],
-      "matchStrings": [
-        "['\"].+?['\"]\\s*:\\s*['\"](?<depName>https://deno.land/x/.+?)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
+        "imports.*[$ ~> /^https:\\/\\/deno.land\\/(x\\/|std)/i] ~> $map(function($v) {( $package := $v ~> /^(https:\\/\\/deno.land\\/(x\\/.+?|std))@(v?(0|[1-9]\\d*)(\\.(0|[1-9]\\d*)(\\.(0|[1-9]\\d*)(-((0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\\+([0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*))?)?)?)/; { 'currentValue': $package.groups[2], 'depName': $package.groups[0] })})"
       ],
       "datasourceTemplate": "deno"
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.[jt]sx?$"
-      ],
+      "managerFilePatterns": ["/\\.[jt]sx?$/"],
       "matchStrings": [
-        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"](?<depName>https://deno.land/x/.+?)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"](?<depName>https://deno.land/(?:x?.+?|std))@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
       ],
       "datasourceTemplate": "deno"
     },
     {
-      "customType": "regex",
-      "fileMatch": [
-        "\\.[jt]sx?$"
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": [
+        "/(?:^|/)import_map.json$/",
+        "/(?:^|/)deno.jsonc?$/"
       ],
       "matchStrings": [
-        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"](?<stdPath>https://deno.land/std)@(?<currentValue>v?(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)/(?<denoPackage>.+?)[/'\"]"
+        "imports.*[$ ~> /^https:\\/\\/(raw\\.githubusercontent\\.com|pax\\.deno\\.dev)\\//i] ~> $map(function($v) {( $package := $v ~> $replace(/^https:\\/\\/(raw\\.githubusercontent\\.com|pax\\.deno\\.dev)\\//, '') ~> /^((.+?)\\/(.+?))[/@](.+?)($|\\/)/; { 'depName': $package.groups[0], 'currentValue': $package.groups[3] })})"
       ],
-      "depNameTemplate": "jsr.io/@{{namespace}}/{{package}}",
-      "packageNameTemplate": "{{stdPath}}",
-      "datasourceTemplate": "deno"
+      "datasourceTemplate": "github-tags"
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "(?:^|/)import_map.json$",
-        "(?:^|/)deno.jsonc?$"
+      "managerFilePatterns": ["/\\.[jt]sx?$/"],
+      "matchStrings": [
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]https://pax.deno.dev/(?<depName>.+?/.+?)@(?<currentValue>[^/\"']+?)[/\"']",
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]https://raw.githubusercontent.com/(?<depName>.+?/.+?)/(?<currentValue>[^'\"]+?)[/'\"]"
+      ],
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": [
+        "/(?:^|/)import_map.json$/",
+        "/(?:^|/)deno.jsonc?$/"
       ],
       "matchStrings": [
-        "['\"].+?['\"]\\s*:\\s*['\"]jsr:@(?<namespace>.+?)/(?<package>.+?)@[\\^~]?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/\"']",
-        "['\"].+?['\"]\\s*:\\s*['\"]https://jsr.io/@(?<namespace>.+?)/(?<package>.+?)/[\\^~]?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/\"']"
+        "imports.*[$ ~> /^(jsr:|https:\\/\\/jsr.io\\/)/i] ~> $map(function($v) {( $package := $v ~> $replace(/^(jsr:|https:\\/\\/jsr.io\\/)/i, '') ~> /(@(.+?)/(.+?))[@|\\/][\\^~]?((0|[1-9]\\d*)(\\.(0|[1-9]\\d*)(\\.(0|[1-9]\\d*)(-((0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\\+([0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*))?)?)?)/; { 'depName': $package.groups[0], 'namespace': $package.groups[1], 'package': $package.groups[2], 'currentValue': $package.groups[3] })})"
       ],
       "datasourceTemplate": "npm",
-      "depNameTemplate": "[@{{namespace}}/{{package}}](https://jsr.io/@{{namespace}}/{{package}})",
       "registryUrlTemplate": "https://npm.jsr.io",
       "packageNameTemplate": "@jsr/{{namespace}}__{{package}}"
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.[jt]sx?$"
-      ],
+      "managerFilePatterns": ["/\\.[jt]sx?$/"],
       "matchStrings": [
-        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"]jsr:@(?<namespace>.+?)/(?<package>.+?)@[\\^~]?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]",
-        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=)['\"]https://jsr.io/@(?<namespace>.+?)/(?<package>.+?)/[\\^~]?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/\"']"
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]jsr:(?<depName>@(?<namespace>.+?)/(?<package>.+?))@[\\^~]?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]",
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]https://jsr.io/(?<depName>@(?<namespace>.+?)/(?<package>.+?))/(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]"
       ],
       "datasourceTemplate": "npm",
-      "depNameTemplate": "[@{{namespace}}/{{package}}](https://jsr.io/@{{namespace}}/{{package}})",
       "registryUrlTemplate": "https://npm.jsr.io",
       "packageNameTemplate": "@jsr/{{namespace}}__{{package}}"
+    },
+    {
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": [
+        "/(?:^|/)import_map.json$/",
+        "/(?:^|/)deno.jsonc?$/"
+      ],
+      "matchStrings": [
+        "imports.*[$ ~> /^(npm:|https:\\/\\/(esm\\.sh|unpkg\\.com|cdn\\.skypack\\.dev)\\/)/i] ~> $map(function($v) {( $package := $v ~> $replace(/^(npm:\\/?|https:\\/\\/(esm\\.sh|unpkg\\.com|cdn\\.skypack\\.dev)\\/)/i, '') ~> /^(.+?)@v?((0|[1-9]\\d*)(\\.(0|[1-9]\\d*)(\\.(0|[1-9]\\d*)(-((0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(\\+([0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*))?)?)?)/; { 'depName': $package.groups[0], 'currentValue': $package.groups[1] })})"
+      ],
+      "datasourceTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.[jt]sx?$/"],
+      "matchStrings": [
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]https://esm.sh/(v\\d{1,3}/)?(?<depName>.+?)@v?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[?/'\"]",
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]npm:(?<depName>.+?)@v?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]",
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]https?://unpkg.com/(?<depName>(?:@[^/\"']*/)?[^/\"']*?)@v?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[/'\"]",
+        "((?:im|ex)port(?:.|\\s)+?from\\s*|//\\s*@deno-types=|//\\s*@ts-types=)['\"]https?://cdn.skypack.dev/(?<depName>(?:@[^/\"']*/)?[^/\"']*?)@v?(?<currentValue>(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:\\.(?:0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?)?)?)[?/'\"]"
+      ],
+      "datasourceTemplate": "npm"
     }
   ],
   "packageRules": [
