@@ -79,7 +79,7 @@
       "registryUrlTemplate": "https://npm.jsr.io",
       "versioningTemplate": "npm",
       "packageNameTemplate": "@jsr/{{namespace}}__{{package}}"
-    }
+    },
     {
       "customType": "jsonata",
       "fileFormat": "json",
